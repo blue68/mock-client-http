@@ -1,0 +1,27 @@
+{
+  "name": "mock-client-http",
+  "version": "0.0.1",
+  "description": "客户端http mock",
+  "main": "index.js",
+  "author": "blune68 <chaoqiang.tian@gmail.com>",
+  "dependencies": {
+    "coffee-script": "*",
+    "request":"*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "jscover": "*",
+    "expect.js": "*"
+  },
+  "engines": [
+    "node >=0.8.14"
+  ],
+  "homepage": "https://github.com/blue68/mock-client-http",
+  "scripts": {
+    "test": "make test"
+  },
+  "bugs": {
+    "url": "https://github.com/blue68/mock-client-http/issues"
+  },
+  "license": "BSD"
+}
