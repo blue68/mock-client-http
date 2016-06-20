@@ -3,7 +3,7 @@ TESTS             = $(shell find tests -type f -name test-*)
 -COVERAGE_DIR    := out/test/
 -RELEASE_DIR     := out/release/
 
--RELEASE_COPY    := lib tests node_modules
+-RELEASE_COPY    := lib
 -COVERAGE_COPY   := lib tests node_modules
 
 -BIN_MOCHA       := ./node_modules/.bin/mocha
@@ -15,10 +15,11 @@ TESTS             = $(shell find tests -type f -name test-*)
 -COFFEE_LIB      := $(shell find lib -type f -name '*.coffee')
 -COFFEE_TEST     := $(shell find tests -type f -name 'test-*.coffee')
 
+-COFFEE_RELEASE := $(addprefix $(-RELEASE_DIR),$(-COFFEE_LIB) )
+
 -COFFEE_COVERAGE := $(-COFFEE_LIB)
 -COFFEE_COVERAGE += $(-COFFEE_TEST)
 
--COFFEE_RELEASE  := $(addprefix $(-RELEASE_DIR),$(-COFFEE_COVERAGE) )
 -COFFEE_COVERAGE := $(addprefix $(-COVERAGE_DIR),$(-COFFEE_COVERAGE) )
 
 -COVERAGE_FILE   := coverage.html
@@ -89,7 +90,7 @@ test-rel: -release-pre
 	@mkdir -p $(-RELEASE_DIR)/run
 	@echo "run release test"
 	@echo $$PWD
-	@$(-BIN_COFFEE) -cb $(-COFFEE_RELEASE)
+	@$(-BIN_COFFEE) -cb $(-COFFEE_COVERAGE)
 	@$(-BIN_MOCHA) \
 		--no-colors \
 		--reporter tap \
@@ -116,9 +117,9 @@ test-cov: -pre-test-cov
 	@mkdir -p $(-RELEASE_DIR)
 
 	@if [ `echo $$OSTYPE | grep -c 'darwin'` -eq 1 ]; then \
-		cp -r $(-RELEASE_COPY) $(-RELEASE_DIR); \
+		cp -r $(-COVERAGE_COPY) $(-RELEASE_DIR); \
 	else \
-		cp -rL $(-RELEASE_COPY) $(-RELEASE_DIR); \
+		cp -rL $(-COVERAGE_COPY) $(-RELEASE_DIR); \
 	fi
 
 	@cd $(-RELEASE_DIR)
@@ -127,8 +128,15 @@ test-cov: -pre-test-cov
 	@cd $(-RELEASE_DIR) && PYTHON=`which python2.6` npm --color=false --registry=http://registry.npmjs.org install --production
 
 
-release: -release-pre
-	@rm -fr $(-RELEASE_DIR)/tests
+release:  dev
+	@echo 'copy files'
+	@mkdir -p $(-RELEASE_DIR)
+	@cp -r $(-RELEASE_COPY) $(-RELEASE_DIR)
+
+	@echo "compile coffee-script files"
+	@$(-BIN_COFFEE) -cb $(-COFFEE_RELEASE)
+	@rm -f $(-COFFEE_RELEASE)
+
 	@echo "all codes in \"$(-RELEASE_DIR)\""
 
 .-PHONY: default

@@ -1,3 +1,8 @@
-*.node
-out/
-coverage.html
+/node_modules/
+/out/test
+/tmp
+/*.sublime*
+
+/.DS_Store
+/coverage.html
+/logs/

@@ -2,7 +2,7 @@
 /etc/config.yaml
 /run/*
 
-/out/
+/out/test
 /coverage.html
 /nohup.out
 /logs/
