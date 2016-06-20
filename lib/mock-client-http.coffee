@@ -7,6 +7,7 @@ class MockClientHttp
     @req = new EventEmitter()
     @req.session = @options.session or {}
     @req.url     = @options.url
+    @req.headers = @options.headers or {}
     @req.method  = @options.method or 'get'
     _this = @
     if @options.chunks?
