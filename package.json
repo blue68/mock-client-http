@@ -4,14 +4,11 @@
   "description": "客户端http mock",
   "main": "index.js",
   "author": "blue68 <chaoqiang.tian@gmail.com>",
-  "dependencies": {
-    "coffee-script": "*",
-    "request":"*"
-  },
   "devDependencies": {
     "mocha": "*",
     "jscover": "*",
-    "expect.js": "*"
+    "expect.js": "*",
+    "coffee-script": "*"
   },
   "engines": [
     "node >=0.8.14"
