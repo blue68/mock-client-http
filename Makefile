@@ -146,7 +146,7 @@ release:  dev
 
 clean:
 	@echo 'clean'
-	@-rm -fr out
+	@-rm -fr out/test
 	@-rm -fr $(-LOGS_DIR)
 
 -logs:
