@@ -48,7 +48,9 @@ class MockClientHttp
           _this.resp.emit 'end', _this.chunks
     @resp.setHeader = (name, value) =>
       @headers[name.toLowerCase()] = value
-
+    
+    @resp.headers = @headers;
+    
   clean : () ->
     @chunks = []
     @headers = {}
