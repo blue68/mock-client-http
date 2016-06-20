@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "客户端http mock",
   "main": "index.js",
-  "author": "blune68 <chaoqiang.tian@gmail.com>",
+  "author": "blue68 <chaoqiang.tian@gmail.com>",
   "dependencies": {
     "coffee-script": "*",
     "request":"*"
